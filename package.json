@@ -1,6 +1,6 @@
 {
   "name": "server-panel-bot",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A universal Discord server panel bot",
   "main": "index.js",
   "scripts": {
