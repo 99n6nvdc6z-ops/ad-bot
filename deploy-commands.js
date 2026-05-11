@@ -5,7 +5,7 @@ const { REST, Routes, SlashCommandBuilder } = require("discord.js");
 const { DISCORD_TOKEN, CLIENT_ID } = process.env;
 
 if (!DISCORD_TOKEN || !CLIENT_ID) {
-  console.error("Missing DISCORD_TOKEN or CLIENT_ID in your .env file.");
+  console.error("Missing DISCORD_TOKEN or CLIENT_ID.");
   process.exit(1);
 }
 
@@ -25,11 +25,15 @@ const rest = new REST({ version: "10" }).setToken(DISCORD_TOKEN);
 
     await rest.put(
       Routes.applicationCommands(CLIENT_ID),
-      { body: commands }
+      {
+        body: commands
+      }
     );
 
     console.log("Global slash command /send registered.");
   } catch (error) {
+    console.error("Failed to register global slash commands:");
     console.error(error);
+    process.exit(1);
   }
 })();
